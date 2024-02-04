@@ -26,6 +26,7 @@ df.drop(['Runtime (Minutes)'],inplace=True,axis=1)
 print(df)
 print(df.info())
 print(df.describe())
+data.dropna()
 # Allows me to see all rows
 pd.set_option('display.max_rows',None)
 print(df)# Filtering data
