@@ -32,7 +32,7 @@ print(df)# Filtering data
 print(df[df['Rating'] >8.5])
 # Filter data for Director (Director == 'Christopher Nolan')
 Christopher_Nolan = df[df['Director'] == 'Christopher Nolan']
-print(df[df['Rating'] >=8])
+print(df[df['Rating'] >=8.5])
 Christopher_Nolan = df[df['Director'] == 'Christopher Nolan']
 print(df[df['Director'] == 'Christopher Nolan'])
 df=df[df['Director'] == 'Christopher Nolan']
@@ -56,6 +56,8 @@ x = df['Revenue (Millions)'].mean()
 df['Revenue (Millions)'].fillna(x, inplace = True) 
 print(df)
 print(df[df['Rating'] >=9])
+rating_min = np.where(data['Rating'] == min(data['Rating']))
+data.iloc[rating_min][['Title','Actors','Director','Year','Rating']]
 # Filtering my data
 print(df[df['Year'] == 2006])
 print(df[df['Year'] == 2016])
@@ -147,11 +149,11 @@ from matplotlib import pyplot
 seed(1)
 data1=(df['Year'])
 data2=(df['Rating'])
-pyplot.scatter(data1, data2)
+pyplot.scatter(data1, data2),plt.xlabel("Year"),plt.ylabel("Rating"), 
 data3=(df['Title'])
 pyplot.scatter(data1, data3)
 data4=(df['Revenue (Millions)'])
-pyplot.scatter(data1, data4)
+pyplot.scatter(data1, data4),plt.xlabel("Year"),plt.ylabel("Revenue(Millions)"), 
 pyplot.scatter(data2, data3)
 print('data4: mean=%.3f stdv=%.3f' % (mean(data4), std(data4)))
 print('data2: mean=%.3f stdv=%.3f' % (mean(data2), std(data2)))
@@ -163,4 +165,14 @@ from scipy.stats import pearsonr
 corr, _ = pearsonr(data2, data4)
 print('Pearsons correlation: %.3f' % corr)
 #Coding and sleep are like oil and water, the minute you start the is no end,its 2am sunday.
-
+data5=(df['Rank'])
+pyplot.scatter(data5, data4),plt.xlabel("Revenue(Millions)"),plt.ylabel("Rank"), 
+#Revenue of selected years 2015-2017
+df7 = df.filter(["Revenue (Millions)","Year], axis=1)
+                 start_year =='2015', end_year =='2017'
+print(df7.info())
+print(df7.describe())
+df8=df7[((df7['Year'] >= 2015) & (df7['Year'] <= 2017))]
+print(df8.info())
+print(df8.describe())
+#The end of my coding baby steps
